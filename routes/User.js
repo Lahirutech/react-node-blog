@@ -5,6 +5,7 @@ const passportConfig = require('../passport');
 const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const Todo = require('../models/Todo');
+const { userAuth, checkRoleAdmin, checkRole } = require('../controllers/auth')
 
 
 const signToken = userID => {
@@ -74,18 +75,17 @@ userRouter.get('/todos', passport.authenticate('jwt', { session: false }), (req,
     });
 });
 
-userRouter.get('/admin', passport.authenticate('jwt', { session: false }), (req, res) => {
-    if (req.user.role === 'admin') {
-        res.status(200).json({ message: { msgBody: 'You are an admin', msgError: false } });
-    }
-    else
-        res.status(403).json({ message: { msgBody: "You're not an admin,go away", msgError: true } });
+userRouter.get('/admin', userAuth, checkRoleAdmin, async (req, res) => {
+    return res.json({ Myreq: req.user });
 });
+
 
 userRouter.get('/authenticated', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { username, role } = req.user;
     res.status(200).json({ isAuthenticated: true, user: { username, role } });
 });
+
+
 
 
 
