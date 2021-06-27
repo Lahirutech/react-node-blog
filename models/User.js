@@ -36,9 +36,16 @@ UserSchema.methods.comparePassword = function (password, cb) {
         if (err)
             return cb(err);
         else {
-            if (!isMatch)
+            if (!isMatch) {
                 return cb(null, isMatch);
-            return cb(null, this);
+            } else {
+                let NewUser = {
+                    _id: this._id,
+                    role: this.role,
+                    username: this.username
+                }
+                return cb(null, NewUser);
+            }
         }
     });
 }
