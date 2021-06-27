@@ -8,6 +8,7 @@ app.use(express.json());
 
 const User = require("./models/User")
 const userRouter = require('./routes/User');
+
 app.use('/user', userRouter)
 
 mongoose.connect('mongodb://localhost:27017/mernauth', { useNewUrlParser: true, useUnifiedTopology: true }, () => {
