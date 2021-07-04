@@ -6,12 +6,20 @@ app.use(cookieParser());
 //Usiing the bosy parser() now its inside the express
 app.use(express.json());
 
-const User = require("./models/User")
+const categoryRouter = require('./routes/category');
+const tagRouter = require('./routes/tag');
 const userRouter = require('./routes/User');
+const blogRouter = require('./routes/blog');
+
 
 app.use('/user', userRouter)
+app.use('/category', categoryRouter)
+app.use('/tag', tagRouter)
+app.use('/blog', blogRouter)
 
-mongoose.connect('mongodb://localhost:27017/mernauth', { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+
+
+mongoose.connect('mongodb://localhost:27017/mernauth', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, () => {
     console.log('successfully connected to database');
 });
 
