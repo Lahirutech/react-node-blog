@@ -1,7 +1,8 @@
 export default {
     createBlog: blog => {
-        return fetch('blog/create', {
-            method: "post",
+        console.log("blogservice", blog.get('title'))
+        return fetch('/blog/create', {
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
             },
