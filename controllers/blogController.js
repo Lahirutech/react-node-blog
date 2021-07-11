@@ -54,7 +54,10 @@ exports.create = (req, res) => {
         blog.mdesc = stripHtml(body).result.substring(0, 160);
         blog.postedBy = req.user._id;
         blog.excerpt = smartTrim(body, 320, ' ', ' ...')
-        console.log(blog.mdesc)
+
+        console.log("blog.mdesc", blog.mdesc)
+        console.log("blog.excerpt", blog.excerpt)
+
 
 
         let arrayOfCategories = categories && categories.split(',');
@@ -122,20 +125,23 @@ exports.list = (req, res) => {
 }
 
 exports.listAllBlogsCategoriesTags = (req, res) => {
+    console.log("list All Blogs Categories Tags got hit")
     //
-    let limit = req.body.limit ? parseInt(req.body.limit) : 10;
+    let limit = req.body.limit ? parseInt(req.body.limit) : 30;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+    console.log("skip", skip)
+    console.log("limit", limit)
 
     let blogs;
     let categories;
-    let tags;
+    let tags
 
     Blog.find({})
         .populate('categories', '_id name slug')
         .populate('tags', '_id name slug')
         .populate('postedBy', '_id name username')
         .select('_id title slug excerpt categories tags postedBy createdAt updatedAt')
-        .sort({ createdAt: -1 })
+        .sort({ createdAt: 1 })
         .skip(skip)
         .limit(limit)
         .select('_id title slug excerpt categories tags postedBy createdAt updatedAt')
@@ -186,7 +192,6 @@ exports.read = (req, res) => {
         });
 };
 
-
 exports.remove = (req, res) => {
     const slug = req.params.slug.toLowerCase();
     Blog.findOneAndRemove({ slug }).exec((err, data) => {
@@ -200,7 +205,6 @@ exports.remove = (req, res) => {
         });
     })
 };
-
 
 exports.update = (req, res) => {
     //
@@ -266,7 +270,8 @@ exports.update = (req, res) => {
 };
 
 exports.photo = (req, res) => {
-    const slug = req.params.slug.toLowercase();
+
+    const slug = req.params.slug.toLowerCase();
     Blog.findOne({ slug })
         .select('photo')
         .exec((err, blog) => {
