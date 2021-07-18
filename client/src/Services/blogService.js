@@ -32,13 +32,14 @@ export default {
 
     },
     singleblog: (slug) => {
-        return fetch(`/blog/${slug}`, {
-            method: 'GET'
-        }).then(response => {
-            return response.json();
-        })
+        console.log("single blog got hit from front head")
+        return fetch(`/blog/blog/${slug}`)
+            .then(response => {
+                return response.json();
+            })
             .catch(err => console.log(err))
     },
+  
     listAll: () => {
         return fetch(`/blogs`, {
             method: 'GET'
