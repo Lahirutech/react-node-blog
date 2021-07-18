@@ -176,13 +176,14 @@ exports.listAllBlogsCategoriesTags = (req, res) => {
 };
 
 exports.read = (req, res) => {
+    console.log("single blog read router got hit")
     const slug = req.params.slug.toLowerCase();
     Blog.findOne({ slug })
         .populate('categories', '_id name slug')
         .populate('tags', '_id name slug')
         .populate('postedBy', '_id name username')
         .select('_id title body slug mtitle mdesc categories tags postedBy createdAt updatedAt')
-        .exec((err, dara) => {
+        .exec((err, data) => {
             if (err) {
                 return res.json({
                     error: errorHandler(err)
