@@ -12,6 +12,16 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String,
+        trim: true,
+        required: false,
+        max: 32
+    },
+    profile: {
+        type: String,
+        required: false
+    },
     role: {
         type: String,
         enum: ['user', 'admin'],
@@ -19,6 +29,10 @@ const UserSchema = new mongoose.Schema({
     },
     todos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Todo' }]
 });
+
+
+
+
 //https://mongoosejs.com/docs/api.html#schema_Schema-pre
 UserSchema.pre('save', function (next) {
     if (!this.isModified('password'))
