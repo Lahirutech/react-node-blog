@@ -39,7 +39,7 @@ export default {
             })
             .catch(err => console.log(err))
     },
-  
+
     listAll: () => {
         return fetch(`/blogs`, {
             method: 'GET'
@@ -78,6 +78,21 @@ export default {
 
     listSearch: (params) => {
 
-    }
+    },
+
+    listRelated: (blog) => {
+        console.log("body from the frontend", blog)
+        return fetch(`/blog/blog/related`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(blog)
+        }).then(response => {
+            return response.json();
+        })
+            .catch(err => console.log(err))
+    },
 
 }
