@@ -13,6 +13,9 @@ export default function Adminindex() {
                     <Link to="/createblog">
                         <li className="list-group-item">Create a Blog</li>
                     </Link>
+                    <Link to="/editdeleteList">
+                        <li className="list-group-item">Edit/Delete a Blog</li>
+                    </Link>
 
                 </ul>
             </div>
