@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from "react-router";
 import CategoryService from '../../../Services/CategoryService';
-import TagService from '../../../Services/tag';
+import TagService from '../../../Services/tagService';
 import blogService from '../../../Services/blogService';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
