@@ -16,14 +16,17 @@ export default function DisplaySingleBlog() {
         blogService.singleblog(slug).then(data => {
             console.log("Received data from the useEffect", data)
             setBlog(data)
-            loadRelated(data)
         })
-
     }, [])
 
-    const loadRelated = (data) => {
-        console.log("load related got hit", data)
-        blogService.listRelated(data).then(blogdata => {
+    useEffect(() => {
+        blog._id && loadRelated()
+    }, [blog]);
+
+
+    const loadRelated = () => {
+        console.log("load related got hit",)
+        blogService.listRelated(blog).then(blogdata => {
             console.log(blogdata)
             if (blogdata.error) {
                 console.log(blogdata.error)
