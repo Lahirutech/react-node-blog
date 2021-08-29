@@ -41,7 +41,7 @@ export default {
     },
 
     listAll: () => {
-        return fetch(`/blogs`, {
+        return fetch(`/blog/blogs`, {
             method: 'GET'
         })
             .then(response => {
@@ -50,7 +50,7 @@ export default {
             .catch(err => console.log(err))
     },
     removeBlog: (slug) => {
-        return fetch(`/blog/${slug}`, {
+        return fetch(`/blog/blog/${slug}`, {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',
@@ -64,7 +64,7 @@ export default {
 
     },
     updateBlog: (blog, slug) => {
-        return fetch(`/blog/${slug}`, {
+        return fetch(`/blog/blog/${slug}`, {
             method: 'PUT',
             headers: {
                 Accept: 'application/json'
