@@ -11,7 +11,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Adminindex from './Components/Admin/Adminindex';
 import tagsindex from './Components/Admin/TagsCategoris/tagsindex';
 import blog from './Components/Admin/Blog/createblog';
-
+import Displayblogs from './Components/Admin/Blog/Displayblogs';
+import DisplaySingleBlog from './Components/Admin/Blog/DisplaySingleBlog';
+import './App.css'
+import EditdeleteList from './Components/Admin/crud/EditdeleteList';
+import BlogUpdate from './Components/Admin/crud/BlogUpdate';
 
 function App() {
   return (
@@ -25,7 +29,21 @@ function App() {
       <PrivateRoute path="/admindashboard" roles={["admin"]} component={Adminindex} />
       {/* Admin Routes createblog */}
       <PrivateRoute path="/tagsandcategories" roles={["admin"]} component={tagsindex} />
-      <PrivateRoute path="/createblog" roles={["admin"]} component={blog} />     
+      <PrivateRoute path="/createblog" roles={["admin"]} component={blog} />
+
+      {/* Blog */}
+
+      <Route path="/displayBlogs" component={Displayblogs} />
+      <Route path="/blogs/:slug" component={DisplaySingleBlog} />
+      <Route path="/categories/:slug" component={DisplaySingleBlog} />
+      <Route path="/tags/:slug" component={DisplaySingleBlog} />
+      {/* Edit and delete blogs */}
+      <PrivateRoute path="/editdeleteList" roles={["admin"]} component={EditdeleteList} />
+
+      <PrivateRoute path="/blogsupdate/:slug" roles={["admin"]} component={BlogUpdate} />
+
+
+
     </Router>
   );
 }

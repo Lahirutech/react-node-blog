@@ -109,6 +109,7 @@ exports.create = (req, res) => {
 
 }
 exports.list = (req, res) => {
+    console.log("get all blogs routes")
     Blog.find({})
         .populate('categories', '_id name slug')
         .populate('tags', '_id name slug')

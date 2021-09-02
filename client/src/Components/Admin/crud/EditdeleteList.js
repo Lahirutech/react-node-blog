@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import CategoryService from '../../../Services/CategoryService';
-import TagService from '../../../Services/tag';
+import TagService from '../../../Services/tagService';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import blogService from '../../../Services/blogService'
@@ -15,6 +15,9 @@ const EditdeleteList = () => {
     const [message, setMessage] = useState('');
     const { user } = useContext(AuthContext);
 
+
+
+        
 
     useEffect(() => {
         console.log("useEffect Triggered")
@@ -32,6 +35,7 @@ const EditdeleteList = () => {
             }
         })
     }
+
     const showUpdateButton = blog => {
         if (user.role == 'admin') {
             return (

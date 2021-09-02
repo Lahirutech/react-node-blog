@@ -15,9 +15,13 @@
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
+    "formidable": "^1.2.2",
+    "lodash": "^4.17.21",
     "mongoose": "^5.12.14",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "slugify": "^1.5.3",
+    "string-strip-html": "^8.3.0"
   }
 }
