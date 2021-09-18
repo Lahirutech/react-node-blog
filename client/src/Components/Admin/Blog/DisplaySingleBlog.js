@@ -7,8 +7,10 @@ import Showcategories from './CategoriesandTags/Showcategories'
 import moment from 'moment';
 import RelatedBlogsCard from './RelatedBlogsCard';
 
+
 export default function DisplaySingleBlog() {
     const { slug } = useParams();
+
     const [blog, setBlog] = useState({ _id: null, categories: [], tags: [], slug: [] })
     const [related, setRelated] = useState([])
 

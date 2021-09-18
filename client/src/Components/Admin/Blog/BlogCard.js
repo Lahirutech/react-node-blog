@@ -3,7 +3,6 @@ import renderHTML from 'react-render-html';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-
 const BlogCard = ({ blog }) => {
 
     const showBlogCategories = (blog) =>
@@ -23,7 +22,6 @@ const BlogCard = ({ blog }) => {
             )
         });
     }
-
     return (
         <div className="lead pb-4">
             <header>
@@ -49,7 +47,7 @@ const BlogCard = ({ blog }) => {
                         <img
                             className="img img-fluid"
                             style={{ maxHeight: '150px', width: 'auto' }}
-                            src={`blog/blog/photo/${blog.slug}`}
+                            src={`/blog/blog/photo/${blog.slug}`}
                             alt={blog.title}
                         />
                     </section>

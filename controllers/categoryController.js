@@ -18,7 +18,6 @@ exports.create = (req, res) => {
         res.json(data)
     })
 }
-
 exports.list = (req, res) => {
     Category.find({}).exec((err, data) => {
         if (err) {
@@ -29,8 +28,8 @@ exports.list = (req, res) => {
         res.json(data)
     })
 }
-
 exports.read = (req, res) => {
+    console.log("blogs by category got hit")
     const slug = req.params.slug.toLowerCase();
     Category.find({ slug }).exec((err, category) => {
         if (err) {
@@ -47,13 +46,10 @@ exports.read = (req, res) => {
                 if (err) {
                     return res.status(400).json({
                         error: errorHandler(err)
-                    })
+                    });
                 }
-                res.json({category: category, blogs: data })
-            })
-
-
-
+                res.json({ category: category, blogs: data });
+            });
     })
 
 }

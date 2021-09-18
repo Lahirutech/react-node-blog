@@ -1,4 +1,7 @@
-const Blog = require('../models/blog');
+const mongoose = require('mongoose');
+const Blog = mongoose.model('Blog')
+
+// const Blog = require('../models/blog');
 const Category = require('../models/Category');
 const Tag = require('../models/tag');
 const formidable = require('formidable');
@@ -8,7 +11,7 @@ const _ = require('lodash');
 const { errorHandler } = require('../helpers/dbErrorHandler');
 const fs = require('fs');
 const { smartTrim } = require('../helpers/excerpttrim');
-const blog = require('../models/blog');
+
 
 exports.create = (req, res) => {
     console.log("blog create backend hit")
@@ -287,7 +290,7 @@ exports.photo = (req, res) => {
         })
 }
 exports.listRelated = (req, res) => {
-    console.log("listrelated got body",req.body.title)
+    console.log("listrelated got body", req.body.title)
     let limit = req.body.limit ? parseInt(req.body.limit) : 3;
     const { _id, categories } = req.body;
 
@@ -303,4 +306,10 @@ exports.listRelated = (req, res) => {
             }
             res.json(blogs);
         });
+}
+
+exports.listSearch = (req, res) => {
+    console.log("search backend called")
+    
+    
 }

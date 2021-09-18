@@ -27,13 +27,23 @@ export default {
 
     },
     singleCategory: (slug) => {
-        return fetch(`/category/${slug}`).then(res => {
-            if (res.status !== 401)
-                return res.json().then(data => data);
-            else
-                return { message: { msgBody: "Unsuccessfull get single category" }, msgError: true };
-
+        return fetch(`/category/category/${slug}`, {
+            method: 'GET'
         })
+            .then(response => {
+                return response.json();
+            })
+            .catch(err => console.log(err));
+
+    },
+    singleTag: (slug) => {
+        return fetch(`/tag/tag/${slug}`, {
+            method: 'GET'
+        })
+            .then(response => {
+                return response.json()
+            })
+            .catch(err => console.log(err))
 
     },
     removeCategory: (slug) => {

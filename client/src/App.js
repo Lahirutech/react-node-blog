@@ -16,6 +16,8 @@ import DisplaySingleBlog from './Components/Admin/Blog/DisplaySingleBlog';
 import './App.css'
 import EditdeleteList from './Components/Admin/crud/EditdeleteList';
 import BlogUpdate from './Components/Admin/crud/BlogUpdate';
+import BlogsbyCategory from './Components/Category/BlogsbyCategory';
+import BlogsbyTags from './Components/Tags/BlogsbyTags';
 
 function App() {
   return (
@@ -35,8 +37,8 @@ function App() {
 
       <Route path="/displayBlogs" component={Displayblogs} />
       <Route path="/blogs/:slug" component={DisplaySingleBlog} />
-      <Route path="/categories/:slug" component={DisplaySingleBlog} />
-      <Route path="/tags/:slug" component={DisplaySingleBlog} />
+      <Route path="/categories/:slug" component={BlogsbyCategory} />
+      <Route path="/tags/:slug" component={BlogsbyTags} />
       {/* Edit and delete blogs */}
       <PrivateRoute path="/editdeleteList" roles={["admin"]} component={EditdeleteList} />
 
